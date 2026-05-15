@@ -1,6 +1,7 @@
 <div align="center">
 
-# 🏥 HHIMS
+# HHIMS
+
 ### Hospital Health Information Management System
 
 *A comprehensive, open-source web platform for managing hospital operations*
@@ -14,31 +15,31 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Technology Stack](#-technology-stack)
-- [System Requirements](#-system-requirements)
-- [Installation](#-installation)
+- [Overview](#overview)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [System Requirements](#system-requirements)
+- [Installation](#installation)
   - [Linux / LAMP](#linux--lamp)
   - [Windows / WampServer or XAMPP](#windows--wampserver-or-xampp)
-- [Database Setup](#-database-setup)
-- [Configuration](#-configuration)
-- [Default Login](#-default-login)
-- [User Roles & Permissions](#-user-roles--permissions)
-- [Modules](#-modules)
-- [Patient Flow](#-patient-flow)
-- [URL Structure](#-url-structure)
-- [Operation Modes](#-operation-modes)
-- [PHP 8 Compatibility](#-php-8-compatibility)
-- [Project Structure](#-project-structure)
-- [License](#-license)
-- [Credits](#-credits)
+- [Database Setup](#database-setup)
+- [Configuration](#configuration)
+- [Default Login](#default-login)
+- [User Roles and Permissions](#user-roles-and-permissions)
+- [Modules](#modules)
+- [Patient Flow](#patient-flow)
+- [URL Structure](#url-structure)
+- [Operation Modes](#operation-modes)
+- [PHP 8 Compatibility](#php-8-compatibility)
+- [Project Structure](#project-structure)
+- [License](#license)
+- [Credits](#credits)
 
 ---
 
-## 🌐 Overview
+## Overview
 
 **HHIMS** (Hospital Health Information Management System) is a full-featured, open-source hospital management platform originally developed by the **Information and Communication Technology Agency of Sri Lanka (ICTA)**. It provides end-to-end management of healthcare facility operations — from patient registration and outpatient consultations through to inpatient admissions, laboratory tests, and pharmacy dispensing.
 
@@ -46,7 +47,7 @@ The system is designed for use in **government hospitals**, **pain clinics**, an
 
 ---
 
-## ✨ Features
+## Features
 
 | Category | Capabilities |
 |---|---|
@@ -66,7 +67,7 @@ The system is designed for use in **government hospitals**, **pain clinics**, an
 
 ---
 
-## 🛠 Technology Stack
+## Technology Stack
 
 | Layer | Technology |
 |---|---|
@@ -81,17 +82,17 @@ The system is designed for use in **government hospitals**, **pain clinics**, an
 
 ---
 
-## 💻 System Requirements
+## System Requirements
 
 - **Web Server:** Apache 2.4+
-- **PHP:** 7.4 or 8.x (PHP 8 compatibility patches included — see [PHP 8 Compatibility](#-php-8-compatibility))
+- **PHP:** 7.4 or 8.x (PHP 8 compatibility patches included — see [PHP 8 Compatibility](#php-8-compatibility))
 - **Database:** MySQL 5.7+ or MariaDB 10.3+
 - **PHP Extensions:** `mysqli`, `mbstring`, `xml`, `json`, `session`
 - **Browser:** Chrome (recommended), Firefox, Edge
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Linux / LAMP
 
@@ -119,12 +120,12 @@ sudo chmod 775 /var/www/hhims/attach
    - WampServer: `C:\wamp64\www\hhims\`
    - XAMPP: `C:\xampp\htdocs\hhims\`
 3. Start Apache and MySQL services
-4. Proceed to [Database Setup](#-database-setup) below
+4. Proceed to [Database Setup](#database-setup) below
 5. Access via browser: `http://localhost/hhims`
 
 ---
 
-## 🗄 Database Setup
+## Database Setup
 
 ### 1. Configure the connection
 
@@ -158,8 +159,8 @@ SOURCE /path/to/hhims/install/new/data.sql;
 **Option B — phpMyAdmin:**
 
 1. Create a new database named `hhims` with `utf8_general_ci` collation
-2. Import `install/new/install.sql` (schema — ~2,400 lines)
-3. Import `install/new/data.sql` (sample data — ~168,000 lines)
+2. Import `install/new/install.sql` (schema — approximately 2,400 lines)
+3. Import `install/new/data.sql` (sample data — approximately 168,000 lines)
 
 > **Note:** `data.sql` is large. If phpMyAdmin times out, increase `max_execution_time` in `php.ini` or use the CLI method.
 
@@ -169,7 +170,7 @@ For upgrading an existing installation, migration scripts are located in `instal
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 Key application settings are in `application/config/hhims_config.php`:
 
@@ -205,20 +206,20 @@ define('ENVIRONMENT', 'production');
 
 ---
 
-## 🔐 Default Login
+## Default Login
 
 | Field | Value |
 |---|---|
-| **URL** | `http://localhost/hhims` (or `http://localhost/hhims/index.php/login`) |
+| **URL** | `http://localhost/hhims` |
 | **Username** | `demo` |
 | **Password** | `123` |
 | **Role** | Programmer (full privileges) |
 
-> **Security Notice:** Change the default password immediately after first login in a production environment.
+> **Security Notice:** Change the default password immediately after the first login in a production environment.
 
 ---
 
-## 👥 User Roles & Permissions
+## User Roles and Permissions
 
 HHIMS uses role-based access control. Each role has fine-grained `can_view`, `can_edit`, and `can_create` permissions per module.
 
@@ -234,11 +235,11 @@ HHIMS uses role-based access control. Each role has fine-grained `can_view`, `ca
 | **Procedure_Room_Staff** | Procedure room operations |
 | **Visitor** | Read-only access |
 
-Permissions are configured in `application/config/hhims_access_config.php`.
+Permissions are defined in `application/config/hhims_access_config.php`.
 
 ---
 
-## 📦 Modules
+## Modules
 
 The application is built around 34 independent HMVC modules:
 
@@ -254,21 +255,20 @@ The application is built around 34 independent HMVC modules:
 | `clinic` | `modules/clinic` | Specialist clinic management |
 | `ward` | `modules/ward` | Ward and bed configuration |
 | `procedureroom` | `modules/procedureroom` | Procedure room records |
-| `report` | `modules/report` | IMMR and other reports |
+| `report` | `modules/report` | IMMR and configurable reports |
 | `user` | `modules/user` | User account management |
-| `hospital` | `modules/hospital` | Hospital/facility configuration |
+| `hospital` | `modules/hospital` | Hospital and facility configuration |
 | `registry` | `modules/registry` | Disease and condition registry |
 | `notification` | `modules/notification` | In-system notifications |
 | `chat` | `modules/chat` | Internal messaging |
-| `attach` | `modules/attach` | File attachments |
+| `attach` | `modules/attach` | File attachments to patient records |
 | `diagram` | `modules/diagram` | Anatomical diagram annotation |
-| `search` | `modules/search` | Global patient/record search |
+| `search` | `modules/search` | Global patient and record search |
 | `security` | `modules/security` | Authentication and access control |
 | `lookup` | `modules/lookup` | Reference data lookups |
 | `form` | `modules/form` | Generic dynamic form engine |
 | `table` | `modules/table` | Generic data grid engine |
-| `report` | `modules/report` | Reporting engine |
-| `preference` | `modules/preference` | User/system preferences |
+| `preference` | `modules/preference` | User and system preferences |
 | `question` | `modules/question` | Clinical questionnaires |
 | `questionnaire` | `modules/questionnaire` | Questionnaire management |
 | `menu` | `modules/menu` | Navigation menu builder |
@@ -276,43 +276,43 @@ The application is built around 34 independent HMVC modules:
 
 ---
 
-## 🔄 Patient Flow
+## Patient Flow
 
 ```
-┌─────────────────┐
-│  Patient Arrives │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐     New patient?
-│  Patient Search  │ ──────────────────► Register Patient
-└────────┬────────┘                      (generates HIN)
-         │ Found
-         ▼
-┌─────────────────┐
-│   OPD Visit      │  ── Consultation, Prescription, Lab Orders
-└────────┬────────┘
-         │ If admission needed
-         ▼
-┌─────────────────┐
-│  Admission       │  ── Ward, Bed, Daily Notes
-└────────┬────────┘
-         │
-    ┌────┴────┐
-    ▼         ▼
-┌────────┐ ┌────────┐
-│   Lab   │ │Pharmacy│
-└────────┘ └────────┘
-         │
-         ▼
-┌─────────────────┐
-│    Discharge     │
-└─────────────────┘
++------------------+
+|  Patient Arrives  |
++--------+---------+
+         |
+         v
++------------------+     New patient?
+|  Patient Search   | --------------------> Register Patient
++--------+---------+                        (generates HIN)
+         | Found
+         v
++------------------+
+|    OPD Visit      |  -- Consultation, Prescription, Lab Orders
++--------+---------+
+         | If admission required
+         v
++------------------+
+|    Admission      |  -- Ward, Bed, Daily Notes
++--------+---------+
+         |
+    +----+----+
+    v         v
++-------+ +--------+
+|  Lab  | |Pharmacy|
++-------+ +--------+
+         |
+         v
++------------------+
+|    Discharge      |
++------------------+
 ```
 
 ---
 
-## 🌐 URL Structure
+## URL Structure
 
 URLs follow the CodeIgniter convention:
 
@@ -334,7 +334,7 @@ http://host/index.php/{module}/{controller}/{method}/{param}
 
 ---
 
-## 🏥 Operation Modes
+## Operation Modes
 
 HHIMS supports three operation modes, configured via `$config["purpose"]` in `hhims_config.php`:
 
@@ -346,9 +346,9 @@ HHIMS supports three operation modes, configured via `$config["purpose"]` in `hh
 
 ---
 
-## 🔧 PHP 8 Compatibility
+## PHP 8 Compatibility
 
-HHIMS was originally written for PHP 5.x. This repository includes patches for full PHP 7.4 and PHP 8.x compatibility.
+HHIMS was originally written for PHP 5.x. This repository includes all patches required for PHP 7.4 and PHP 8.x compatibility.
 
 ### Framework Patches (`system/`)
 
@@ -357,22 +357,22 @@ HHIMS was originally written for PHP 5.x. This repository includes patches for f
 | `system/core/Controller.php` | Added `#[\AllowDynamicProperties]` to `CI_Controller` |
 | `system/core/Model.php` | Added `#[\AllowDynamicProperties]` to `CI_Model` |
 | `system/core/Common.php` | Fixed optional parameter order; fixed return-by-reference |
-| `system/core/Loader.php` | Fixed assignment-by-reference; `CI_Loader` dynamic property support |
+| `system/core/Loader.php` | Fixed assignment-by-reference; dynamic property support |
 | `system/core/Output.php` | Added null check for `str_replace()` |
 | `system/core/Input.php` | PHP 8 compatibility updates |
 | `system/core/Router.php` | PHP 8 compatibility updates |
 | `system/core/URI.php` | PHP 8 compatibility updates |
-| `system/database/DB_driver.php` | PHP 4 constructor → `__construct()`; `#[\AllowDynamicProperties]` on `CI_DB_driver` |
+| `system/database/DB_driver.php` | PHP 4 constructor replaced with `__construct()`; added `#[\AllowDynamicProperties]` to `CI_DB_driver` |
 
 ### Application Patches (`application/`)
 
 | File | Fix Applied |
 |---|---|
-| `index.php` | `mysql_*` compatibility shim (all removed functions re-implemented via `mysqli`) |
-| `application/config/database.php` | Driver changed from `mysql` → `mysqli` |
-| `application/third_party/MX/Controller.php` | `#[\AllowDynamicProperties]` on `MX_Controller` |
-| `application/third_party/MX/Loader.php` | `#[\AllowDynamicProperties]` on `MX_Loader`; null-coalescing fixes |
-| `application/libraries/class/MDSLicense.php` | `#[\AllowDynamicProperties]`; fixed `SimpleXMLElement::getName()` |
+| `index.php` | `mysql_*` compatibility shim — all removed functions re-implemented via `mysqli` |
+| `application/config/database.php` | Driver changed from `mysql` to `mysqli` |
+| `application/third_party/MX/Controller.php` | Added `#[\AllowDynamicProperties]` to `MX_Controller` |
+| `application/third_party/MX/Loader.php` | Added `#[\AllowDynamicProperties]` to `MX_Loader`; null-coalescing fixes |
+| `application/libraries/class/MDSLicense.php` | Added `#[\AllowDynamicProperties]`; fixed `SimpleXMLElement::getName()` call |
 | `application/models/mpersistent.php` | Fixed optional parameter ordering |
 | `application/models/mappointment.php` | Fixed optional parameter ordering |
 | `application/modules/form/views/form_render.php` | Fixed null array access and variable-variable usage |
@@ -381,67 +381,67 @@ HHIMS was originally written for PHP 5.x. This repository includes patches for f
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 hhims/
 ├── application/
-│   ├── config/                  # App configuration files
-│   │   ├── database.php         # DB credentials (do not commit)
-│   │   ├── hhims_config.php     # Core HHIMS settings
-│   │   ├── hhims_access_config.php  # RBAC definitions
-│   │   └── routes.php           # URL routing
-│   ├── core/                    # Framework extensions
-│   │   ├── My_Model.php         # Base model with CRUD helpers
-│   │   ├── MY_Loader.php        # Extends MX_Loader
-│   │   └── MY_Router.php        # Extends MX_Router
-│   ├── modules/                 # 34 HMVC feature modules
+│   ├── config/                      # Application configuration files
+│   │   ├── database.php             # Database credentials (do not commit)
+│   │   ├── hhims_config.php         # Core HHIMS settings
+│   │   ├── hhims_access_config.php  # Role-based access control definitions
+│   │   └── routes.php               # URL routing
+│   ├── core/                        # Framework extensions
+│   │   ├── My_Model.php             # Base model with CRUD helpers
+│   │   ├── MY_Loader.php            # Extends MX_Loader
+│   │   └── MY_Router.php            # Extends MX_Router
+│   ├── modules/                     # 34 HMVC feature modules
 │   │   ├── patient/
 │   │   ├── opd/
 │   │   ├── admission/
 │   │   └── ...
-│   ├── models/                  # Shared data models
-│   ├── views/                   # Base/shared view templates
-│   ├── forms/                   # Dynamic form definitions (65+ forms)
-│   ├── libraries/               # Custom libraries
-│   │   ├── mdscore.php          # Core MDS utility library
-│   │   └── class/               # MDSIMMR, MDSReporter, MDSUpload, etc.
-│   └── third_party/MX/          # HMVC Modular Extensions
-├── system/                      # CodeIgniter 2.0.3 framework
+│   ├── models/                      # Shared data models
+│   ├── views/                       # Base and shared view templates
+│   ├── forms/                       # Dynamic form definitions (65+ forms)
+│   ├── libraries/                   # Custom libraries
+│   │   ├── mdscore.php              # Core MDS utility library
+│   │   └── class/                   # MDSIMMR, MDSReporter, MDSUpload, etc.
+│   └── third_party/MX/              # HMVC Modular Extensions
+├── system/                          # CodeIgniter 2.0.3 framework (do not modify)
 ├── install/
 │   ├── new/
-│   │   ├── install.sql          # Full database schema
-│   │   └── data.sql             # Sample / seed data
+│   │   ├── install.sql              # Full database schema
+│   │   └── data.sql                 # Sample and seed data
 │   └── update/
-│       └── changes.sql          # Incremental migration scripts
-├── js/                          # JavaScript libraries (jQuery, Bootstrap, etc.)
-├── css/                         # Stylesheets
-├── images/                      # Static image assets
-├── attach/                      # Patient file attachments (excluded from git)
-├── logs/                        # Application logs (excluded from git)
-├── index.php                    # Front controller + PHP 8 mysql_* shim
-└── mdsfoss.key                  # License key (do not commit)
+│       └── changes.sql              # Incremental migration scripts
+├── js/                              # JavaScript libraries (jQuery, Bootstrap, etc.)
+├── css/                             # Stylesheets
+├── images/                          # Static image assets
+├── attach/                          # Patient file attachments (excluded from git)
+├── logs/                            # Application logs (excluded from git)
+├── index.php                        # Front controller and PHP 8 mysql_* shim
+└── mdsfoss.key                      # License key (do not commit)
 ```
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **GNU Affero General Public License v3.0**.
 
 > This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-See [LICENSE](https://www.gnu.org/licenses/agpl-3.0.html) for the full text.
+See the [GNU AGPL v3.0](https://www.gnu.org/licenses/agpl-3.0.html) for the full license text.
 
 ### Application License Key
 
-The system includes a demonstration license key. To display your hospital or practice name on reports, apply for a free license at [hhims.org](http://www.hhims.org) and place the `.key` file in the project root directory.
+The system ships with a demonstration license key. To display your hospital or practice name on printed reports, apply for a free license at [hhims.org](http://www.hhims.org) and place the received `.key` file in the project root directory.
 
-> **Important:** Never commit `mdsfoss.key` or `application/config/database.php` with production credentials to version control.
+> **Important:** Never commit `mdsfoss.key` or `application/config/database.php` containing production credentials to version control.
 
 ---
 
-## 👏 Credits
+## Credits
 
 | Role | Name | Contact |
 |---|---|---|
@@ -459,6 +459,6 @@ The system includes a demonstration license key. To display your hospital or pra
 
 <div align="center">
 
-*HHIMS — Improving healthcare through open-source technology*
+HHIMS — Improving healthcare through open-source technology
 
 </div>
