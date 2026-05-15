@@ -1,6 +1,7 @@
 <?php
 
-class MDSLicense 
+#[\AllowDynamicProperties]
+class MDSLicense
 {
 	public $hospital = null;
 	public $key= null;
